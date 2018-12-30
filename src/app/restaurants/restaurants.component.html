@@ -1,0 +1,58 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input [(ngModel)]="city" matInput placeholder="Miasto" [ngModelOptions]="{standalone: true}"/>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input [(ngModel)]="street" matInput placeholder="Ulica" [ngModelOptions]="{standalone: true}"/>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input [(ngModel)]="streetNumber" matInput placeholder="nr. Domu" [ngModelOptions]="{standalone: true}"/>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input [(ngModel)]="flatNumber" matInput placeholder="nr. Mieszkania" [ngModelOptions]="{standalone: true}"/>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input [(ngModel)]="postalCode" matInput placeholder="kod pocztowy" [ngModelOptions]="{standalone: true}"/>
+  </mat-form-field>
+
+  <button (click) = "findRestaurants()" mat-raised-button>Szukaj</button>
+</form>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwa</th>
+    <td mat-cell *matCellDef="let element">
+      <a href="{{element.link}}">
+        {{ element.name }}
+      </a>
+    </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="minimumOrderValue">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>
+      Minimalna wartość zamówienia
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.minimumOrderValue }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="distance">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Odległość</th>
+    <td mat-cell *matCellDef="let element">{{ element.distance }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="deliveryFee">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Koszt dostawy</th>
+    <td mat-cell *matCellDef="let element">{{ element.deliveryFee }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
